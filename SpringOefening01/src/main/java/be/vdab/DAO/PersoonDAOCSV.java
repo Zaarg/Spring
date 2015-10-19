@@ -23,7 +23,11 @@ public class PersoonDAOCSV implements PersoonDAO{ //imoort from text file with c
 		try (Stream<String> stream = Files.lines(personenfile)) {
 			stream.forEach(regel -> {
 				String[] eigenschap = regel.split(",");
-				personen.add(new Persoon(Integer.parseInt(eigenschap[0]),eigenschap[1],eigenschap[2],Integer.parseInt(eigenschap[3])));
+				try {
+					personen.add(new Persoon(Integer.parseInt(eigenschap[0]),eigenschap[1],eigenschap[2],Integer.parseInt(eigenschap[3])));
+				} catch (NumberFormatException x){
+					
+				}
 			});
 		} catch (IOException ex) {
 		    ex.printStackTrace();
