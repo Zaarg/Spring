@@ -3,12 +3,21 @@
   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
   xsi:schemaLocation='http://www.springframework.org/schema/beans
   http://www.springframework.org/schema/beans/spring-beans.xsd'> 	
+  	<bean id='conversionService' class='org.springframework.context.support.ConversionServiceFactoryBean'>
+  		<property name='converters'>
+    		<list>
+      			<bean class='be.vdab.converters.StringToDateConverter'/>
+    		</list>
+  		</property>
+	</bean> 
   	<bean id='classA' class='be.vdab.ClassA'>
   		<property name='telefoonNrHelpDesk' value='01/234.567.8'/>
   		<property name='koersenURL' value='http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml'/>
   		<property name='defaultTaalEnLand' value='nl_BE'/> 
   		<property name='importData' value='c:/data/postcodes.txt'/>
   		<property name='defaultBladRichting' value='LIGGEND'/>
+		<property name='webMasterEMailAdres' value='SpringIntVeld@vdab.be'/>
+		<property name='websiteGestart' value='2008-07-31'/>
 	</bean>
   	<bean id='classB' class='be.vdab.ClassB'>
   		<constructor-arg value='01/234.567.8'/>   
@@ -23,5 +32,16 @@
      		<prop key='Averell'>012</prop>
     	</props>
  	 </constructor-arg>
-	</bean>  
+	</bean>
+	<bean id='teller1' class='be.vdab.Teller'/>
+	<bean id='teller2' class='be.vdab.Teller' scope='prototype'/>
+	<bean id='yahooKoersenClient' class='be.vdab.restclient.YahooKoersenClient'>
+  		<constructor-arg value='http://download.finance.yahoo.com/d/quotes.csv?s=EURUSD=X&amp;f=l1'/>
+	</bean> 
+	<bean id='ecbKoersenClient' class='be.vdab.restclient.ECBKoersenClient'>
+  		<constructor-arg value='http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml'/>
+	</bean>
+	<bean id='euroService' class='be.vdab.services.EuroService'>
+  		<constructor-arg ref='ecbKoersenClient'/> 
+  	</bean>   
 </beans>
