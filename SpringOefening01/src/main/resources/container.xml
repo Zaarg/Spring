@@ -4,6 +4,6 @@
   xsi:schemaLocation='http://www.springframework.org/schema/beans
   http://www.springframework.org/schema/beans/spring-beans.xsd'>    
   	<bean id='persoonViewer' class='be.vdab.PersoonViewer'>
-  		<property name='aantalKinderenTonen' value='true'/>
+  		<constructor-arg value='false'/>
 	</bean>
 </beans>

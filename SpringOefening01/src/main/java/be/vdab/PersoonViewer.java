@@ -6,6 +6,10 @@ public class PersoonViewer {
 	
 	private boolean aantalKinderenTonen;
 	
+	public PersoonViewer(boolean aantalKinderenTonen) {
+		this.aantalKinderenTonen = aantalKinderenTonen;
+	}
+	
 	public void setAantalKinderenTonen(boolean aantalKinderenTonen) {
 		this.aantalKinderenTonen = aantalKinderenTonen;
 	}
