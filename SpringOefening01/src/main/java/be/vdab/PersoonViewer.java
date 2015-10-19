@@ -4,23 +4,37 @@ import java.util.List;
 
 public class PersoonViewer {
 	
-	private boolean aantalKinderenTonen;
+	private final PersoonEigenschap[] eigenschappen;
 	
-	public PersoonViewer(boolean aantalKinderenTonen) {
-		this.aantalKinderenTonen = aantalKinderenTonen;
+	public PersoonViewer(PersoonEigenschap[] eigenschappen){
+		this.eigenschappen=eigenschappen;
 	}
 	
-	public void setAantalKinderenTonen(boolean aantalKinderenTonen) {
-		this.aantalKinderenTonen = aantalKinderenTonen;
-	}
-
 	public void afbeelden(List<Persoon> personen){
 		for(Persoon persoon:personen){
-			System.out.println("Nr: "+persoon.getPersoonNr());
-			System.out.println("Voornaam: "+persoon.getVoornaam());
-			System.out.println("Familienaam: "+persoon.getFamilienaam());
-			if (aantalKinderenTonen) System.out.println("Aantal Kinderen: "+persoon.getAantalKinderen());
+			for (PersoonEigenschap eigenschap : eigenschappen) {
+		        toonEigenschap(persoon, eigenschap);
+		        System.out.print(' ');
+		      }
+		      System.out.println();
 		}
 	}
+	
+	private void toonEigenschap(Persoon persoon, PersoonEigenschap eigenschap) { 
+	    switch (eigenschap) {
+	    case PERSOON_NR:
+	      System.out.print(persoon.getPersoonNr());
+	      break;
+	    case VOORNAAM:
+	      System.out.print(persoon.getVoornaam());
+	      break;
+	    case FAMILIENAAM:
+	      System.out.print(persoon.getFamilienaam());
+	      break;
+	    case AANTAL_KINDEREN:
+	      System.out.print(persoon.getAantalKinderen());
+	      break;
+	    }
+	  }
 	
 }

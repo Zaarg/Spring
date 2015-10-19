@@ -4,6 +4,12 @@
   xsi:schemaLocation='http://www.springframework.org/schema/beans
   http://www.springframework.org/schema/beans/spring-beans.xsd'>    
   	<bean id='persoonViewer' class='be.vdab.PersoonViewer'>
-  		<constructor-arg value='false'/>
+  		<constructor-arg>
+   		 <list>
+      		<value>VOORNAAM</value>
+      		<value>FAMILIENAAM</value>
+      		<value>AANTAL_KINDEREN</value>
+    	</list>
+  		</constructor-arg>
 	</bean>
 </beans>
