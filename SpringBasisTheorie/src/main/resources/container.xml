@@ -2,7 +2,13 @@
 <beans xmlns='http://www.springframework.org/schema/beans'
   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
   xsi:schemaLocation='http://www.springframework.org/schema/beans
-  http://www.springframework.org/schema/beans/spring-beans.xsd'> 
-  <bean id='classA' class='be.vdab.ClassA'/>   
-  <bean id='classB' class='be.vdab.ClassB'/>
+  http://www.springframework.org/schema/beans/spring-beans.xsd'> 	
+  	<bean id='classA' class='be.vdab.ClassA'>
+  		<property name='telefoonNrHelpDesk' value='01/234.567.8'/>
+  		<property name='koersenURL' value='http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml'/>
+  		<property name='defaultTaalEnLand' value='nl_BE'/> 
+  		<property name='importData' value='c:/data/postcodes.txt'/>
+  		<property name='defaultBladRichting' value='LIGGEND'/>
+	</bean>
+  	<bean id='classB' class='be.vdab.ClassB'/>
 </beans>
