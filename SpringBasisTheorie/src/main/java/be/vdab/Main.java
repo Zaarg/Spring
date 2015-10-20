@@ -8,7 +8,7 @@ import be.vdab.services.EuroService;
 
 public class Main {
   public static void main(String[] args) { 
-    try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("container.xml")) {
+	  try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("restclient.xml", "services.xml","container.xml"))  {
     	
     	ClassA objectA = context.getBean(ClassA.class);
     	System.out.println(objectA.getKoersenURL());

@@ -6,11 +6,13 @@
   http://www.springframework.org/schema/beans/spring-beans.xsd
   http://www.springframework.org/schema/context 
   http://www.springframework.org/schema/context/spring-context.xsd'> 
-  <context:property-placeholder location='classpath:restclient.properties'/>
-  <bean id='yahooKoersenClient' class='be.vdab.restclient.YahooKoersenClient'>
-    <constructor-arg value='${yahooKoersenURL}'/> 
-  </bean> 
-  <bean id='ecbKoersenClient' class='be.vdab.restclient.ECBKoersenClient'>
-    <constructor-arg value='${ecbKoersenURL}'/>
-  </bean>
-</beans> 
+  	
+	<context:property-placeholder location='classpath:DAO.properties'/>
+	<bean id='persoonDAOCSV' class='be.vdab.DAO.PersoonDAOCSV'>
+  		<constructor-arg value='c:/data/personen.csv'/>
+	</bean>
+	<bean id='persoonDAOMeerdereRegels' class='be.vdab.DAO.PersoonDAOMeerdereRegels'>
+  		<constructor-arg value='c:/data/personen.txt'/>
+	</bean>
+	
+</beans>
