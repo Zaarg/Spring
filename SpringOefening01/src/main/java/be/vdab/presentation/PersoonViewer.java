@@ -6,7 +6,6 @@ import be.vdab.Persoon;
 import be.vdab.PersoonEigenschap;
 import be.vdab.services.PersoonService;
 
-
 public class PersoonViewer {
 	
 	private final PersoonService persoonService;
