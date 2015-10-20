@@ -6,15 +6,23 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.stream.Stream; 
+import java.util.stream.Stream;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 
 import be.vdab.Persoon;
 
+@Repository
+@Qualifier("persoonCSV")
 public class PersoonDAOCSV implements PersoonDAO{ //imoort from text file with comma delimiter
 
 	File personenfile;
 	
-	public PersoonDAOCSV (File personenfile) {
+	@Autowired
+	public PersoonDAOCSV (@Value("${personenCSV}") File personenfile) {
 		this.personenfile = personenfile;
 	}
 	
