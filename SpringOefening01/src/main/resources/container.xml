@@ -5,7 +5,7 @@
   http://www.springframework.org/schema/beans/spring-beans.xsd'>    
 
 	<import resource='DAO.xml'/>
-	<import resource='services.xml'/>
+	<!-- <import resource='services.xml'/>  -->
 	<import resource='presentation.xml'/>
 	
 </beans>

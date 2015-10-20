@@ -1,6 +1,9 @@
 package be.vdab;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import be.vdab.DAO.CreateDAOBeans;
+import be.vdab.services.CreateServiceBeans;
 
 public class Main {
   public static void main(String[] args) { 
@@ -10,7 +13,7 @@ public class Main {
     personen.add(new Persoon(3,"Dob","Dobby",2));
     personen.add(new Persoon(4,"Eob","Eobby",3));
     personen.add(new Persoon(5,"Fob","Fobby",4));*/
-	try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("container.xml")) {
+	try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(CreateDAOBeans.class,CreateServiceBeans.class)) {
 		PersoonViewer persoonViewer = context.getBean("persoonViewer", PersoonViewer.class); 
 		persoonViewer.afbeelden();
     }

@@ -15,7 +15,7 @@ public class PersoonServiceImpl implements PersoonService{
 	PersoonDAO persoonDAO;
 	
 	@Autowired
-	public PersoonServiceImpl(@Qualifier("persoonCSV") PersoonDAO persoonDAO) {
+	public PersoonServiceImpl(@Qualifier("persoonCSVDAO") PersoonDAO persoonDAO) {
 		this.persoonDAO = persoonDAO;
 	}
 	

@@ -16,13 +16,13 @@ import org.springframework.stereotype.Repository;
 import be.vdab.Persoon;
 
 @Repository
-@Qualifier("persoonCSV")
-public class PersoonDAOCSV implements PersoonDAO{ //imoort from text file with comma delimiter
+@Qualifier("persoonCSVDAO")
+class PersoonDAOCSV implements PersoonDAO{ //imoort from text file with comma delimiter
 
 	File personenfile;
 	
 	@Autowired
-	public PersoonDAOCSV (@Value("${personenCSV}") File personenfile) {
+	PersoonDAOCSV (File personenfile) {
 		this.personenfile = personenfile;
 	}
 	

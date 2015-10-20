@@ -13,13 +13,13 @@ import org.springframework.stereotype.Repository;
 import be.vdab.Persoon;
 
 @Repository
-@Qualifier("persoonTXT")
-public class PersoonDAOMeerdereRegels implements PersoonDAO{ //imoort from text file with ENTER delimiter
+@Qualifier("persoonTXTDAO")
+class PersoonDAOMeerdereRegels implements PersoonDAO{ //imoort from text file with ENTER delimiter
 	
 	File personenfile;
 	
 	@Autowired
-	public PersoonDAOMeerdereRegels (@Value("${personenTXT}") File personenfile) {
+	PersoonDAOMeerdereRegels (File personenfile) {
 		this.personenfile = personenfile;
 	}
 	

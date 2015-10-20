@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 
-@Qualifier("Yahoo")
-public class YahooKoersenClient implements KoersenClient {
+//@Qualifier("Yahoo")
+class YahooKoersenClient implements KoersenClient {
   
 	private final URL url;
   
-	@Autowired
-	public YahooKoersenClient(@Value("${yahooKoersenURL}") URL url) { 
+	//@Autowired
+	YahooKoersenClient(/*@Value("${yahooKoersenURL}")*/ URL url) { 
     this.url = url;
 	} 
   
