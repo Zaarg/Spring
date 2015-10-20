@@ -18,7 +18,7 @@ class PersoonDAOMeerdereRegels implements PersoonDAO{ //imoort from text file wi
 	
 	File personenfile;
 	
-	@Autowired
+	//@Autowired
 	PersoonDAOMeerdereRegels (File personenfile) {
 		this.personenfile = personenfile;
 	}

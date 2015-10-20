@@ -3,6 +3,8 @@ package be.vdab;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import be.vdab.DAO.CreateDAOBeans;
+import be.vdab.presentation.CreatePresentationBeans;
+import be.vdab.presentation.PersoonViewer;
 import be.vdab.services.CreateServiceBeans;
 
 public class Main {
@@ -13,7 +15,7 @@ public class Main {
     personen.add(new Persoon(3,"Dob","Dobby",2));
     personen.add(new Persoon(4,"Eob","Eobby",3));
     personen.add(new Persoon(5,"Fob","Fobby",4));*/
-	try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(CreateDAOBeans.class,CreateServiceBeans.class)) {
+	try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(CreateDAOBeans.class,CreateServiceBeans.class,CreatePresentationBeans.class)) {
 		PersoonViewer persoonViewer = context.getBean("persoonViewer", PersoonViewer.class); 
 		persoonViewer.afbeelden();
     }

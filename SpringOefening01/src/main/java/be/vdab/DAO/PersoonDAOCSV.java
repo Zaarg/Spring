@@ -21,7 +21,7 @@ class PersoonDAOCSV implements PersoonDAO{ //imoort from text file with comma de
 
 	File personenfile;
 	
-	@Autowired
+	//@Autowired
 	PersoonDAOCSV (File personenfile) {
 		this.personenfile = personenfile;
 	}

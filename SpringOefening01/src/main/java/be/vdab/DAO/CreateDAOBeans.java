@@ -14,7 +14,6 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @PropertySource("classpath:DAO.properties")
-@ComponentScan
 public class CreateDAOBeans {
 	
 	  @Value("${personenCSV}")
@@ -24,24 +23,15 @@ public class CreateDAOBeans {
 	  private File persoonTXTFile;
 	    
 	  @Bean
-	  @Qualifier("persoonCSV")
+	  @Qualifier("persoonCSVDAO")
 	  PersoonDAO persoonDAOCSV() {
 	      return new PersoonDAOCSV(persoonCSVFile); 
 	  }
 	  
 	  @Bean
-	  @Qualifier("persoonTXT")
+	  @Qualifier("persoonTXTDAO")
 	  PersoonDAO persoonDAOMeerdereRegels() {
 	      return new PersoonDAOMeerdereRegels(persoonTXTFile); 
 	  }
-	  
-	  /*@Bean   
-	  KoersenClient koersenClient() {
-	    try (InputStream stream = yahooURL.openStream()) {     
-	    	return new YahooKoersenClient(yahooURL);   
-	    } catch (IOException ex) {
-	    	return new ECBKoersenClient(ecbURL);   
-	    }
-	  }*/
-	
+			
 }

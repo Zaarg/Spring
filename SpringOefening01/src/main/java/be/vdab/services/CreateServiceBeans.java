@@ -7,17 +7,19 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 
+import be.vdab.DAO.PersoonDAO;
+
 @Configuration
-@ComponentScan
+//@ComponentScan
 public class CreateServiceBeans { 
   
-	/*@Autowired   
-	@Qualifier("Yahoo")
-	private KoersenClient koersenClient; 
-  
+	@Autowired
+	@Qualifier("persoonCSVDAO")
+	private PersoonDAO persoonDAO; 
+	
 	@Bean
-	EuroService euroService() {
-		return new EuroService(koersenClient);
-	}*/
+	public PersoonService persoonService() {
+		return new PersoonServiceImpl(persoonDAO);
+	} 
   
 } 

@@ -1,8 +1,11 @@
-package be.vdab;
+package be.vdab.presentation;
 
 import java.util.List;
 
+import be.vdab.Persoon;
+import be.vdab.PersoonEigenschap;
 import be.vdab.services.PersoonService;
+
 
 public class PersoonViewer {
 	

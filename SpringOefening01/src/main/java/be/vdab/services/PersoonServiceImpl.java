@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import be.vdab.Persoon;
 import be.vdab.DAO.PersoonDAO;
 
-@Service
-public class PersoonServiceImpl implements PersoonService{
+//@Service
+class PersoonServiceImpl implements PersoonService{
 	
 	PersoonDAO persoonDAO;
 	
-	@Autowired
-	public PersoonServiceImpl(@Qualifier("persoonCSVDAO") PersoonDAO persoonDAO) {
+	//@Autowired
+	PersoonServiceImpl(/*@Qualifier("persoonCSVDAO")*/ PersoonDAO persoonDAO) {
 		this.persoonDAO = persoonDAO;
 	}
 	
