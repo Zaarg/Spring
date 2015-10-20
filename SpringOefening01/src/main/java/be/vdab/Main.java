@@ -16,7 +16,7 @@ public class Main {
     personen.add(new Persoon(4,"Eob","Eobby",3));
     personen.add(new Persoon(5,"Fob","Fobby",4));*/
 	try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(CreateDAOBeans.class,CreateServiceBeans.class,CreatePresentationBeans.class)) {
-		PersoonViewer persoonViewer = context.getBean("persoonViewer", PersoonViewer.class); 
+		PersoonViewer persoonViewer = context.getBean(PersoonViewer.class); 
 		persoonViewer.afbeelden();
     }
   }

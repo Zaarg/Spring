@@ -14,7 +14,7 @@ import be.vdab.DAO.PersoonDAO;
 public class CreateServiceBeans { 
   
 	@Autowired
-	@Qualifier("persoonCSVDAO")
+	@Qualifier("persoonTXTDAO")
 	private PersoonDAO persoonDAO; 
 	
 	@Bean
