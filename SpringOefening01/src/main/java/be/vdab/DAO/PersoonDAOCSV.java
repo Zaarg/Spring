@@ -2,6 +2,7 @@ package be.vdab.DAO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,16 +12,16 @@ import be.vdab.Persoon;
 
 public class PersoonDAOCSV implements PersoonDAO{ //imoort from text file with comma delimiter
 
-	Path personenfile;
+	File personenfile;
 	
-	public PersoonDAOCSV (Path personenfile) {
+	public PersoonDAOCSV (File personenfile) {
 		this.personenfile = personenfile;
 	}
 	
 	@Override
 	public List<Persoon> findAll() {
 		List<Persoon> personen = new ArrayList<>();
-		try (Stream<String> stream = Files.lines(personenfile)) {
+		try (Stream<String> stream = Files.lines(personenfile.toPath())) {
 			stream.forEach(regel -> {
 				String[] eigenschap = regel.split(",");
 				try {

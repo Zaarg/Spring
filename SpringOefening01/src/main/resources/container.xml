@@ -3,13 +3,26 @@
   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
   xsi:schemaLocation='http://www.springframework.org/schema/beans
   http://www.springframework.org/schema/beans/spring-beans.xsd'>    
-  	<bean id='persoonViewer' class='be.vdab.PersoonViewer'>
+	
+	<bean id='persoonDAOCSV' class='be.vdab.DAO.PersoonDAOCSV'>
+  		<constructor-arg value='c:/data/personen.csv'/>
+	</bean>
+	<bean id='persoonDAOMeerdereRegels' class='be.vdab.DAO.PersoonDAOMeerdereRegels'>
+  		<constructor-arg value='c:/data/personen.txt'/>
+	</bean>
+	<bean id='persoonServiceImpl' class='be.vdab.services.PersoonServiceImpl'>
+  		<constructor-arg ref='persoonDAOMeerdereRegels'/>
+	</bean>
+	<bean id='persoonViewer' class='be.vdab.PersoonViewer'>
+  		<constructor-arg ref='persoonServiceImpl'/>
   		<constructor-arg>
    		 <list>
+      		<value>PERSOON_NR</value>
       		<value>VOORNAAM</value>
       		<value>FAMILIENAAM</value>
       		<value>AANTAL_KINDEREN</value>
     	</list>
   		</constructor-arg>
 	</bean>
+	
 </beans>

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans xmlns='http://www.springframework.org/schema/beans'
+  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+  xsi:schemaLocation='http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd'> 
+  <bean id='yahooKoersenClient' class='be.vdab.restclient.YahooKoersenClient'>
+    <constructor-arg
+      value='http://download.finance.yahoo.com/d/quotes.csv?s=EURUSD=X&amp;f=l1'/>
+  </bean> 
+  <bean id='ecbKoersenClient' class='be.vdab.restclient.ECBKoersenClient'>
+    <constructor-arg
+      value='http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml'/>
+  </bean>
+</beans> 
