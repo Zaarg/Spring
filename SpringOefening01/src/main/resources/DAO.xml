@@ -9,10 +9,10 @@
   	
 	<context:property-placeholder location='classpath:DAO.properties'/>
 	<bean id='persoonDAOCSV' class='be.vdab.DAO.PersoonDAOCSV'>
-  		<constructor-arg value='c:/data/personen.csv'/>
+  		<constructor-arg value='${personenCSV}'/>
 	</bean>
 	<bean id='persoonDAOMeerdereRegels' class='be.vdab.DAO.PersoonDAOMeerdereRegels'>
-  		<constructor-arg value='c:/data/personen.txt'/>
+  		<constructor-arg value='${personenTXT}'/>
 	</bean>
 	
 </beans>
