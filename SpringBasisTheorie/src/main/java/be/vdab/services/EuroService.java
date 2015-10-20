@@ -3,12 +3,16 @@ package be.vdab.services;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import be.vdab.restclient.KoersenClient;
 
 public class EuroService {
 	private final KoersenClient koersenClient; 
 	
-	public EuroService(KoersenClient koersenClient) { 
+	@Autowired
+	public EuroService(@Qualifier("ECB") KoersenClient koersenClient) { 
 		this.koersenClient = koersenClient;
 	} 
   

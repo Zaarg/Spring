@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+
+@Qualifier("ECB")
 public class ECBKoersenClient implements KoersenClient {
   
 	private final URL url;
