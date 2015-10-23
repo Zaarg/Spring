@@ -34,7 +34,8 @@ class FiliaalController {
 	
 	@RequestMapping(method = RequestMethod.GET) 
 	ModelAndView findAll() {
-	  return new ModelAndView(FILIALEN_VIEW, "filialen", filiaalService.findAll());
+		return new ModelAndView(FILIALEN_VIEW, "filialen", filiaalService.findAll())
+				  .addObject("aantalFilialen", filiaalService.findAantalFilialen()); 
 	}
   
 	@RequestMapping(path = "toevoegen", method = RequestMethod.GET)
