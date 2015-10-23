@@ -14,15 +14,18 @@ class OfferteController {
 	private static final String REDIRECT_URL_NA_TOEVOEGEN = "redirect:/";
 	private static final Logger logger = Logger.getLogger(OfferteController.class.getName()); 
   
-	@RequestMapping(path = "aanvraag", method = RequestMethod.GET)   String createForm1() {
+	@RequestMapping(path = "aanvraag", method = RequestMethod.GET)   
+	String createForm1() {
 		return STAP1_VIEW;
 	} 
   
-	@RequestMapping(method = RequestMethod.POST, params = "van1naar2")   String createForm1Naar2() {
+	@RequestMapping(method = RequestMethod.POST, params = "van1naar2")   
+	String createForm1Naar2() {
 		return STAP2_VIEW; 
 	} 
   
-	@RequestMapping(method = RequestMethod.POST, params = "van2naar1")   String createForm2Naar1() {
+	@RequestMapping(method = RequestMethod.POST, params = "van2naar1")   
+	String createForm2Naar1() {
 		return STAP1_VIEW;
 	}
   

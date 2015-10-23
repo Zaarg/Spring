@@ -36,7 +36,7 @@ class BrouwerDAOImpl implements BrouwerDAO {
 	public List<Brouwer> findByNaam(String beginNaam) {
 		List<Brouwer> bros = new ArrayList<>();
 		for (Brouwer bro:brouwers.values()) {
-			if (bro.getNaam().contains(beginNaam)) {
+			if (bro.getNaam().toLowerCase().contains(beginNaam.toLowerCase())) {
 				bros.add(bro);
 			}
 		}

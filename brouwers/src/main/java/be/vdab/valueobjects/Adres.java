@@ -6,10 +6,10 @@ public class Adres implements Serializable {
 	private static final long serialVersionUID = 1L; 
 	private String straat;
 	private String huisNr;
-	private int postcode;
+	private Integer postcode;
 	private String gemeente; 
 	
-	public Adres(String straat, String huisNr,int postcode, String gemeente) {
+	public Adres(String straat, String huisNr,Integer postcode, String gemeente) {
 		this.straat = straat;
 		this.huisNr = huisNr; 
 		this.postcode = postcode;
@@ -24,7 +24,7 @@ public class Adres implements Serializable {
 		return huisNr;
 	}
 
-	public int getPostcode() {
+	public Integer getPostcode() {
 		return postcode;
 	}
 

@@ -1,9 +1,46 @@
+/* CSS voor Brouwers
+ *
+ * Oefening Spring 
+ *
+ * @author: Steve Schoonooghe
+ *
+ */
+
+/*------------------*/
+/* Algemene styling */
+/*------------------*/
+
+/*** NORMALIZE ***/
+
+html, body, div, article, nav, ul {
+    margin:0;
+    padding:0;
+}
+
+/*** Body ***/
 body {
 	background-color: #fcffe8;
 	color: #6d3636;
 	font-family: arial;
 }
 
+h1 {
+	clear: both;
+}
+
+/*** Index ***/
+
+h1 {
+	text-align: center;
+}
+
+#indexbier {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*** Navigation bar ***/
 nav {
 	background: #442222;
 	color: white;
@@ -62,16 +99,12 @@ nav>ul>li>a,nav ul li ul li a, #logoutbutton {
 	margin-bottom:0;
 }
 
-
-
-
-h1 {
-	clear: both;
-}
-
+/*** Tabel ***/
 table, th, td {
 	border: 1px solid silver;
 	border-collapse: collapse;
+	margin-left: auto;
+    margin-right: auto;
 }
 
 thead {

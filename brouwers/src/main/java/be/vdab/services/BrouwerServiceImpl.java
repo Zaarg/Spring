@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import be.vdab.dao.BrouwerDAO;
 import be.vdab.entities.Brouwer;
 
-
 @Service  
 class BrouwerServiceImpl implements BrouwerService { 
 	private final BrouwerDAO brouwerDAO;
