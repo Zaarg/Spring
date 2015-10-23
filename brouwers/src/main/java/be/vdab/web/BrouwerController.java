@@ -1,11 +1,16 @@
 package be.vdab.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import be.vdab.entities.Brouwer;
 import be.vdab.services.BrouwerService;
 
 @Controller 
@@ -29,6 +34,16 @@ class BrouwerController {
 	@RequestMapping(path = "beginnaam", method = RequestMethod.GET)
 	String findNaam() {
 		return BEGINNAAM_VIEW;
+	}
+	
+	@RequestMapping(path = "beginnaam/{letter}", method = RequestMethod.GET)  
+	ModelAndView findNaam(@PathVariable String letter) {   
+		ModelAndView modelAndView = new ModelAndView(BEGINNAAM_VIEW);
+		List<Brouwer> brouwers = new ArrayList<>(brouwerService.findByNaam(letter));
+		if (!brouwers.isEmpty()) {
+			modelAndView.addObject("brouwers",brouwers);   
+		}
+		return modelAndView;
 	}
 	
 	@RequestMapping(path = "toevoegen", method = RequestMethod.GET)

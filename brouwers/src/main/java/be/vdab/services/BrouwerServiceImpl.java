@@ -29,7 +29,7 @@ class BrouwerServiceImpl implements BrouwerService {
   
 	@Override
 	public List<Brouwer> findByNaam(String beginNaam) {
-		return brouwerDAO.findAll();
+		return brouwerDAO.findByNaam(beginNaam);
 	}
 
 } 
