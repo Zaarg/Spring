@@ -16,7 +16,7 @@ public class Filiaal implements Serializable {
 	private String naam;
 	private boolean hoofdFiliaal;
 	@NumberFormat(style = Style.NUMBER) private BigDecimal waardeGebouw;
-	@DateTimeFormat(style = "S-") private Date inGebruikName;
+	@DateTimeFormat(style = "-S") private Date inGebruikName;
 	private Adres adres; 
   
 	public Filiaal(String naam, boolean hoofdFiliaal, BigDecimal waardeGebouw, Date inGebruikName, Adres adres) {
