@@ -16,9 +16,9 @@
 <h1>Filialen per postcode</h1>
 <c:url value='/filialen' var='url'/>
 <form:form action='${url}' commandName='postcodeReeks' method='get'> 
-	<form:label path='vanpostcode'>Van:</form:label> 
+	<form:label path='vanpostcode'>Van:</form:label> <form:errors path='vanpostcode'/>
 	<form:input path='vanpostcode' autofocus='autofocus'/> 
-	<form:label path='totpostcode'>Tot:</form:label>
+	<form:label path='totpostcode'>Tot:</form:label> <form:errors path='totpostcode'/>
 	<form:input path='totpostcode'/>
 	<input type='submit' value='Zoeken'> 
 </form:form>

@@ -2,26 +2,36 @@ package be.vdab.valueobjects;
 
 public class PostcodeReeks {
 	
-	private int vanpostcode;  
-	private int totpostcode;
+	private Integer vanpostcode;  
+	private Integer totpostcode;
+	private final static int MIN_POSTCODE = 1000;
+	private final static int MAX_POSTCODE = 9999; 
    	  
-	public int getVanpostcode() {
+	public Integer getVanpostcode() {
 		return vanpostcode;
 	}
 
-	public int getTotpostcode() {
+	public Integer getTotpostcode() {
 		return totpostcode;
 	}
 
-	public void setVanpostcode(int vanpostcode) {
+	public void setVanpostcode(Integer vanpostcode) {
+		valideer(vanpostcode);
 		this.vanpostcode = vanpostcode;
 	}
 
-	public void setTotpostcode(int totpostcode) {
+	public void setTotpostcode(Integer totpostcode) {
+		valideer(vanpostcode);
 		this.totpostcode = totpostcode;
 	}
+	
+	private void valideer(int postcode) {
+		if (postcode < MIN_POSTCODE || postcode > MAX_POSTCODE) {
+		    throw new IllegalArgumentException();
+		}
+    }
 
-	public boolean bevat(int postcode) { // bevat de reeks een bepaalde postcode ? (wordt gebuikt in de DAO layer)
+	public boolean bevat(Integer postcode) { // bevat de reeks een bepaalde postcode ? (wordt gebuikt in de DAO layer)
 		return postcode >= vanpostcode && postcode <= totpostcode;
 	}
 	

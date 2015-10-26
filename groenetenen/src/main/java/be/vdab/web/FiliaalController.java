@@ -1,9 +1,13 @@
 package be.vdab.web;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.DataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -86,14 +90,29 @@ class FiliaalController {
 	@RequestMapping(path = "perpostcode", method = RequestMethod.GET) 
 	ModelAndView findByPostcodeReeks() {   
 		PostcodeReeks reeks = new PostcodeReeks();
-		reeks.setVanpostcode(1000);
-		reeks.setTotpostcode(9999);
+		//reeks.setVanpostcode(1000);
+		//reeks.setTotpostcode(9999);
 		return new ModelAndView(PER_POSTCODE_VIEW).addObject(reeks); 
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, params={"vanpostcode", "totpostcode"}) 
-	ModelAndView findByPostcodeReeks(PostcodeReeks reeks) {   
-		return new ModelAndView(PER_POSTCODE_VIEW, "filialen", filiaalService.findByPostcodeReeks(reeks)); 
+	@RequestMapping(method=RequestMethod.GET, params={"vanpostcode", "totpostcode"})
+	ModelAndView findByPostcodeReeks(PostcodeReeks reeks, BindingResult bindingResult) {
+	  ModelAndView modelAndView = new ModelAndView(PER_POSTCODE_VIEW);
+	  if ( ! bindingResult.hasErrors()) {
+		  List<Filiaal> filialen = filiaalService.findByPostcodeReeks(reeks);
+		  if (filialen.isEmpty()) {
+		    bindingResult.reject("geenFilialen"); 
+		  } 
+		  else {
+		    modelAndView.addObject("filialen", filialen);
+		  }
+		}
+		return modelAndView;
+	}  
+	
+	@InitBinder("postcodeReeks") 
+	void initBinderPostcodeReeks(DataBinder dataBinder) {   
+		dataBinder.setRequiredFields("vanpostcode", "totpostcode"); 
 	} 
 	
 } 
