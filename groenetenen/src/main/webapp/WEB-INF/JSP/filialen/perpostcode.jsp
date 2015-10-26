@@ -20,7 +20,8 @@
 	<form:input path='vanpostcode' autofocus='autofocus'/> 
 	<form:label path='totpostcode'>Tot:</form:label> <form:errors path='totpostcode'/>
 	<form:input path='totpostcode'/>
-	<input type='submit' value='Zoeken'> 
+	<input type='submit' value='Zoeken'>
+	<form:errors cssClass='fout'/> 
 </form:form>
 <c:forEach items='${filialen}' var='filiaal'> 
   <spring:url var='url' value='/filialen/{id}'>
