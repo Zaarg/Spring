@@ -21,7 +21,7 @@ public class PostcodeReeks {
 	}
 
 	public void setTotpostcode(Integer totpostcode) {
-		valideer(vanpostcode);
+		valideer(totpostcode);
 		this.totpostcode = totpostcode;
 	}
 	
