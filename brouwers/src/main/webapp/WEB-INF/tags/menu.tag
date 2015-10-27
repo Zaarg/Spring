@@ -6,6 +6,7 @@
 		<li><a href="#">Brouwers</a>
 			<ul>
 				<li><a href="<c:url value='/brouwers'/>">Lijst</a></li>
+				<li><a href="<c:url value='/brouwers/opalfabet'/>">Op Alfabet</a></li>
 				<li><a href="<c:url value='/brouwers/beginnaam'/>">Op Naam</a></li>
 				<li><a href="<c:url value='/brouwers/toevoegen'/>">Toevoegen</a></li>
 			</ul>

@@ -17,6 +17,7 @@ import be.vdab.services.BrouwerService;
 @RequestMapping("/brouwers")
 class BrouwerController { 
 	private static final String BROUWERS_VIEW = "brouwers/brouwers";
+	private static final String ALFABET_VIEW = "brouwers/opalfabet";
 	private static final String BEGINNAAM_VIEW = "brouwers/beginnaam";
 	private static final String TOEVOEGEN_VIEW = "brouwers/toevoegen"; 
 	private final BrouwerService brouwerService;
@@ -31,14 +32,14 @@ class BrouwerController {
 		return new ModelAndView(BROUWERS_VIEW, "brouwers", brouwerService.findAll());
 	} 
   
-	@RequestMapping(path = "beginnaam", method = RequestMethod.GET)
-	String findNaam() {
-		return BEGINNAAM_VIEW;
+	@RequestMapping(path = "opalfabet", method = RequestMethod.GET)
+	String findLetter() {
+		return ALFABET_VIEW;
 	}
 	
-	@RequestMapping(path = "beginnaam/{letter}", method = RequestMethod.GET)  
+	@RequestMapping(path = "opalfabet/{letter}", method = RequestMethod.GET)  
 	ModelAndView findNaam(@PathVariable String letter) {   
-		ModelAndView modelAndView = new ModelAndView(BEGINNAAM_VIEW);
+		ModelAndView modelAndView = new ModelAndView(ALFABET_VIEW);
 		List<Brouwer> brouwers = new ArrayList<>(brouwerService.findByNaam(letter));
 		if (!brouwers.isEmpty()) {
 			modelAndView.addObject("brouwers",brouwers);   
@@ -46,6 +47,11 @@ class BrouwerController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(path = "beginnaam", method = RequestMethod.GET)
+	String findNaam() {
+		return BEGINNAAM_VIEW;
+	}
+		
 	@RequestMapping(path = "toevoegen", method = RequestMethod.GET)
 	String createForm() {
 		return TOEVOEGEN_VIEW;
