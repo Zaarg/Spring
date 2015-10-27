@@ -1,5 +1,7 @@
 package be.vdab.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,10 +10,12 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import be.vdab.entities.Filiaal;
+import be.vdab.valueobjects.Adres;
 import be.vdab.valueobjects.PostcodeReeks;
 
 @Repository 
@@ -19,6 +23,10 @@ class FiliaalDAOImpl implements FiliaalDAO {
 	private final Map<Long, Filiaal> filialen = new ConcurrentHashMap<>(); 
 	private final JdbcTemplate jdbcTemplate;
 	private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	private final FiliaalRowMapper rowMapper = new FiliaalRowMapper();
+	private static final String BEGIN_SQL = "select id, naam, hoofdFiliaal, straat, huisNr, postcode, gemeente," +
+			  "inGebruikName, waardeGebouw from filialen ";
+	private static final String SQL_FIND_ALL = BEGIN_SQL + "order by naam";
 	
 	@Autowired
 	FiliaalDAOImpl(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
@@ -49,7 +57,7 @@ class FiliaalDAOImpl implements FiliaalDAO {
   
 	@Override
 	public List<Filiaal> findAll() {
-		return new ArrayList<>(filialen.values());
+	  return jdbcTemplate.query(SQL_FIND_ALL, rowMapper);
 	}
 	
 	@Override
@@ -71,5 +79,16 @@ class FiliaalDAOImpl implements FiliaalDAO {
 	    }
 	  }
 	  return filialen;
+	}
+	
+	@SuppressWarnings("unused")
+	private static class FiliaalRowMapper implements RowMapper<Filiaal> { 
+		@Override 
+		public Filiaal mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+			return new Filiaal(resultSet.getLong("id"), resultSet.getString("naam"), resultSet.getBoolean("hoofdFiliaal"),
+					resultSet.getBigDecimal("waardeGebouw"),resultSet.getDate("inGebruikName"), new Adres(resultSet.getString("straat"),
+					resultSet.getString("huisNr"), resultSet.getInt("postcode"), resultSet.getString("gemeente")));
+		}
 	} 
+	
 }
