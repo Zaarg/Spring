@@ -36,9 +36,18 @@ class OfferteController {
 	String createForm2Naar1(Offerte offerte) {
 		return STAP1_VIEW;
 	} 
-  
+	
+	@RequestMapping(method = RequestMethod.POST, params = "nogeennummer")
+	String nogEenNummer(Offerte offerte) {
+		offerte.nogEenTelefoonNr();
+		return STAP1_VIEW;
+	}
+	
 	@RequestMapping(method = RequestMethod.POST, params = "bevestigen")
 	String create(@Validated(Offerte.Stap2.class) Offerte offerte, BindingResult bindingResult, SessionStatus sessionStatus) { 
+		if (! offerte.getGazontypes().values().contains(true)) {
+			  bindingResult.reject("minstensEenGazonType");
+		} 
 		if (bindingResult.hasErrors()) {
 			return STAP2_VIEW;
 		}
