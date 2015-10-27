@@ -3,8 +3,11 @@ package be.vdab.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import be.vdab.entities.Brouwer;
 import be.vdab.services.BrouwerService;
+
 
 @Controller 
 @RequestMapping("/brouwers")
@@ -46,12 +50,28 @@ class BrouwerController {
 		}
 		return modelAndView;
 	}
-	
-	@RequestMapping(path = "beginnaam", method = RequestMethod.GET)
-	String findNaam() {
-		return BEGINNAAM_VIEW;
-	}
 		
+	@RequestMapping(path = "beginnaam", method = RequestMethod.GET) 
+	ModelAndView findByBeginNaam() {   
+		BeginNaam beginNaam = new BeginNaam();
+		return new ModelAndView(BEGINNAAM_VIEW).addObject(beginNaam); 
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, params={"beginNaam"})
+	ModelAndView findByPostcodeReeks(@Valid BeginNaam beginNaam, BindingResult bindingResult) {
+	  ModelAndView modelAndView = new ModelAndView(BEGINNAAM_VIEW);
+	  if ( ! bindingResult.hasErrors()) {
+		  List<Brouwer> brouwers = brouwerService.findByNaam(beginNaam.getBeginNaam());
+		  if (brouwers.isEmpty()) {
+		    bindingResult.reject("geenBrouwers"); 
+		  } 
+		  else {
+		    modelAndView.addObject("brouwers", brouwers);
+		  }
+		}
+		return modelAndView;
+	}
+	
 	@RequestMapping(path = "toevoegen", method = RequestMethod.GET)
 	String createForm() {
 		return TOEVOEGEN_VIEW;

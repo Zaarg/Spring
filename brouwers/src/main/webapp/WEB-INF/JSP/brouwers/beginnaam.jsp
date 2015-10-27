@@ -2,6 +2,7 @@
 <%@taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <%@taglib prefix='v' uri='http://vdab.be/tags' %>
 <%@taglib prefix='spring' uri='http://www.springframework.org/tags'%>
+<%@taglib prefix='form' uri='http://www.springframework.org/tags/form'%>
 
 <!doctype html>
 <html lang='nl'>
@@ -11,15 +12,13 @@
 <v:menu/>
 
 <h1>Brouwer zoeken op alfabet</h1>
-
-<div id="alfabet">
-<c:forTokens items='A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z' delims=',' var='letter'>
-	<spring:url var='letterURL' value='/beginnaam/{letter}'>   
-  		<spring:param name='letter' value='${letter}'/> 
-  	</spring:url>
-  	<h2 class="middle"><a href="<c:url value='${letterURL}'/>">${letter}</a></h2>
-</c:forTokens>
-</div>
+<c:url value='/brouwers' var='url'/>
+<form:form action='${url}' commandName='beginNaam' method='get'> 
+	<form:label path='beginNaam'>Begin brouwernaam: </form:label> <form:errors path='beginNaam'/>
+	<form:input path='beginNaam' type='text' required='required' autofocus='autofocus'/> 
+	<input type='submit' value='Zoeken'>
+	<form:errors cssClass='fout'/> 
+</form:form>
 
 <c:if test='${not empty brouwers}'>
     <table>
