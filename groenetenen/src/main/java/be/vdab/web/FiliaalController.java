@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.DataBinder;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,9 +48,9 @@ class FiliaalController {
 	}
   
 	@RequestMapping(path = "toevoegen", method = RequestMethod.GET)
-	String createForm() {
-		return TOEVOEGEN_VIEW;
-	}
+	ModelAndView createForm() {
+	  return new ModelAndView(TOEVOEGEN_VIEW, "filiaal", new Filiaal());
+	} 
 		
 	@RequestMapping(path = "{id}", method = RequestMethod.GET)  
 	ModelAndView read(@PathVariable long id) {   
@@ -67,11 +68,14 @@ class FiliaalController {
 		return new ModelAndView(VERWIJDERD_VIEW, "naam", naam);
 	} 
 	
-	@RequestMapping(method = RequestMethod.POST) 
-	String create() {
-		logger.info("filiaal record toevoegen aan database");
-		return REDIRECT_URL_NA_TOEVOEGEN; 
-	} 
+	@RequestMapping(method = RequestMethod.POST)
+	public String create(@Valid Filiaal filiaal, BindingResult bindingResult) {
+	  if (bindingResult.hasErrors()) {
+	    return TOEVOEGEN_VIEW;
+	  }
+	  filiaalService.create(filiaal);
+	  return REDIRECT_URL_NA_TOEVOEGEN;
+	}  
 		 
 	@RequestMapping(path = "{id}/verwijderen", method = RequestMethod.POST)
 	String delete(@PathVariable long id, RedirectAttributes redirectAttributes) {
@@ -112,9 +116,19 @@ class FiliaalController {
 		return modelAndView;
 	}  
 	
-	/*@InitBinder("postcodeReeks") 
+	/*@InitBinder("postcodeReeks") //Dit is de databinder voor als je geen Bean validate gebruikt 
 	void initBinderPostcodeReeks(DataBinder dataBinder) {   
 		dataBinder.setRequiredFields("vanpostcode", "totpostcode"); 
-	} */
+	}*/
+	
+	@InitBinder("postcodeReeks") //Dit is de binder om de immutable reeks te kunnen data binden
+	void initBinderPostcodeReeks(WebDataBinder binder) {   
+		binder.initDirectFieldAccess(); 
+	} 
+	
+	@InitBinder("filiaal") 
+	void initBinderFiliaal(WebDataBinder binder) {
+	  binder.initDirectFieldAccess(); 
+	}
 	
 } 

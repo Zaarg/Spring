@@ -19,13 +19,13 @@ public class PostcodeReeks {
 		return totpostcode;
 	}
 
-	public void setVanpostcode(Integer vanpostcode) {
+	/*public void setVanpostcode(Integer vanpostcode) {
 		this.vanpostcode = vanpostcode;
 	}
 
 	public void setTotpostcode(Integer totpostcode) {
 		this.totpostcode = totpostcode;
-	}
+	}*/
 	
 	public boolean bevat(Integer postcode) { // bevat de reeks een bepaalde postcode ? (wordt gebuikt in de DAO layer)
 		return postcode >= vanpostcode && postcode <= totpostcode;
