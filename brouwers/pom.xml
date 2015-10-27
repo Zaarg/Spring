@@ -54,6 +54,12 @@
     </dependency> 
   <dependency> <!-- gebruik Spring MVC -->
     <groupId>org.springframework</groupId>
-    <artifactId>spring-webmvc</artifactId>   </dependency>
+    <artifactId>spring-webmvc</artifactId>   
+   </dependency>
+   <dependency>
+  	<groupId>org.hibernate</groupId>
+  	<artifactId>hibernate-validator</artifactId>
+  	<version>[5.2.1,]</version>
+	</dependency> 
 </dependencies> 
 </project>

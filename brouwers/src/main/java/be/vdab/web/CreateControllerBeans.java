@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.validation.beanvalidation.SpringValidatorAdapter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -36,5 +39,18 @@ public class CreateControllerBeans extends WebMvcConfigurerAdapter{
 	  messageSource.setBasename("classpath:teksten");   
 	  messageSource.setFallbackToSystemLocale(false);   
 	  return messageSource;
+	}
+	
+	@Bean 
+	LocalValidatorFactoryBean validatorFactory() {   
+		LocalValidatorFactoryBean factory = new LocalValidatorFactoryBean();
+		factory.setValidationMessageSource(messageSource());   
+		return factory;
+	}
+	
+	@Override // importeer Validator uit org.springframework.validation
+	public Validator getValidator() {
+		return new SpringValidatorAdapter(validatorFactory().getValidator()); 
 	} 
+	
 } 
