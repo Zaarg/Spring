@@ -8,6 +8,12 @@ public interface BrouwerDAO {
 	
 	void create(Brouwer brouwer);
 	
+	Brouwer read(long id);
+	
+	void update(Brouwer brouwer);
+	
+	void delete(long id);
+	
 	List<Brouwer> findAll();
 	
 	List<Brouwer> findByNaam(String beginNaam);
