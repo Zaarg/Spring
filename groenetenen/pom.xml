@@ -54,19 +54,8 @@
     </dependency> 
   <dependency> <!-- gebruik Spring MVC -->
     <groupId>org.springframework</groupId>
-    <artifactId>spring-webmvc</artifactId>   </dependency>
-  <dependency>
-  	<groupId>junit</groupId>
-  	<artifactId>junit</artifactId>
-  	<version>4.12</version>
-  	<scope>test</scope>
-  </dependency>
-  <dependency>
-  	<groupId>org.mockito</groupId>
-  	<artifactId>mockito-all</artifactId>
-  	<version>1.10.19</version>
-  	<scope>test</scope>
-  </dependency>
+    <artifactId>spring-webmvc</artifactId>   
+    </dependency>
   	<dependency>
   		<groupId>org.hibernate</groupId>
   		<artifactId>hibernate-validator</artifactId>
@@ -80,6 +69,38 @@
 	<dependency>
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-jdbc</artifactId>
-	</dependency>  
+	</dependency>
+	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-orm</artifactId>
+	</dependency> 
+	<dependency> <!-- Hibernate implementatie van JPA -->
+    	<groupId>org.hibernate</groupId>
+    	<artifactId>hibernate-entitymanager</artifactId>
+    	<version>[5, 5.0.99]</version>
+  	</dependency>
+	<dependency> <!-- Test dependencies -->
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<version>4.12</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.mockito</groupId>
+  		<artifactId>mockito-all</artifactId>
+  		<version>1.10.19</version>
+  		<scope>test</scope>
+  	</dependency>
+	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-test</artifactId>
+  		<scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>[5.1,]</version>
+		<scope>test</scope>
+	</dependency>   
 </dependencies> 
 </project>
