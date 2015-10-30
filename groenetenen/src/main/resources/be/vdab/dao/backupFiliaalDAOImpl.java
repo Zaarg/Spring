@@ -10,7 +10,7 @@ import be.vdab.entities.Filiaal;
 import be.vdab.valueobjects.PostcodeReeks;
 
 @Repository
-class FiliaalDAOImpl implements FiliaalDAO { 
+class backupFiliaalDAOImpl implements FiliaalDAO { 
   private EntityManager entityManager;
   
   @PersistenceContext 

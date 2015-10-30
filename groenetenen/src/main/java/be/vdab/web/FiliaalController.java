@@ -33,6 +33,8 @@ class FiliaalController {
 	private static final String REDIRECT_URL_NA_VERWIJDEREN = "redirect:/filialen/{id}/verwijderd";
 	private static final String REDIRECT_URL_HEEFT_NOG_WERKNEMERS = "redirect:/filialen/{id}";
 	private static final String PER_POSTCODE_VIEW = "filialen/perpostcode";
+	private static final String WIJZIGEN_VIEW = "filialen/wijzigen";
+	private static final String REDIRECT_URL_NA_WIJZIGEN = "redirect:/filialen";
 	private static final Logger logger = Logger.getLogger(FiliaalController.class.getName());
 	private final FiliaalService filiaalService;
 	
@@ -52,15 +54,13 @@ class FiliaalController {
 	  return new ModelAndView(TOEVOEGEN_VIEW, "filiaal", new Filiaal());
 	} 
 		
-	@RequestMapping(path = "{id}", method = RequestMethod.GET)  
-	ModelAndView read(@PathVariable long id) {   
+	@RequestMapping(path = "{filiaal}", method = RequestMethod.GET) ModelAndView read(@PathVariable Filiaal filiaal) {   
 		ModelAndView modelAndView = new ModelAndView(FILIAAL_VIEW);
-		Filiaal filiaal = filiaalService.read(id);   
 		if (filiaal != null) {
-			modelAndView.addObject(filiaal);   
+			modelAndView.addObject(filiaal);
 		}
 		return modelAndView;
-	} 
+	}  
 	
 	private static final String VERWIJDERD_VIEW = "filialen/verwijderd";
 	@RequestMapping(path = "{id}/verwijderd", method = RequestMethod.GET) 
@@ -77,12 +77,13 @@ class FiliaalController {
 	  return REDIRECT_URL_NA_TOEVOEGEN;
 	}  
 		 
-	@RequestMapping(path = "{id}/verwijderen", method = RequestMethod.POST)
-	String delete(@PathVariable long id, RedirectAttributes redirectAttributes) {
-		Filiaal filiaal = filiaalService.read(id);
+	@RequestMapping(path = "{filiaal}/verwijderen", method = RequestMethod.POST) 
+	String delete(@PathVariable Filiaal filiaal, RedirectAttributes redirectAttributes) { 
+		//Filiaal filiaal = filiaalService.read(id);
 		if (filiaal == null) { 
 			return REDIRECT_URL_FILIAAL_NIET_GEVONDEN;
 		}
+		long id = filiaal.getId();
 		try {
 			filiaalService.delete(id);
 			redirectAttributes.addAttribute("id", id).addAttribute("naam", filiaal.getNaam());
@@ -92,7 +93,25 @@ class FiliaalController {
 	    	return REDIRECT_URL_HEEFT_NOG_WERKNEMERS;
 	    }
 	}
-		
+	
+	@RequestMapping(path ="{filiaal}/wijzigen", method = RequestMethod.GET)
+	ModelAndView updateForm(@PathVariable Filiaal filiaal) { 
+	  //Filiaal filiaal = filiaalService.read(id);
+	  if (filiaal == null) {
+	    return new ModelAndView(REDIRECT_URL_FILIAAL_NIET_GEVONDEN);
+	  }
+	  return new ModelAndView(WIJZIGEN_VIEW).addObject(filiaal);
+	} 	
+	
+	@RequestMapping(path = "{id}/wijzigen", method = RequestMethod.POST) 
+	String update(@Valid Filiaal filiaal, BindingResult bindingResult) {
+	  if (bindingResult.hasErrors()) {
+	    return WIJZIGEN_VIEW;
+	  }
+	  filiaalService.update(filiaal);
+	  return REDIRECT_URL_NA_WIJZIGEN;
+	}
+	
 	@RequestMapping(path = "perpostcode", method = RequestMethod.GET) 
 	ModelAndView findByPostcodeReeks() {   
 		PostcodeReeks reeks = new PostcodeReeks();
