@@ -2,11 +2,15 @@ package be.vdab.dao;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import be.vdab.entities.Brouwer;
 
-public interface BrouwerDAO {
+public interface BrouwerDAO extends JpaRepository<Brouwer, Long>{
 	
-	void create(Brouwer brouwer);
+	List<Brouwer> findByNaamStartingWith(String begin);
+	
+	/*void create(Brouwer brouwer);
 	
 	Brouwer read(long id);
 	
@@ -16,6 +20,6 @@ public interface BrouwerDAO {
 	
 	List<Brouwer> findAll();
 	
-	List<Brouwer> findByNaam(String beginNaam);
+	List<Brouwer> findByNaam(String beginNaam);*/
 		
 }

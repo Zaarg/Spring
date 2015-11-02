@@ -1,4 +1,4 @@
-package be.vdab.dao;
+/*package be.vdab.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import be.vdab.entities.Brouwer;
 
 @Repository 
-class BrouwerDAOImpl implements BrouwerDAO { 
+class BrouwerDAOImpl_JPAversion implements BrouwerDAO { 
 	
 	private EntityManager entityManager;
 	  
@@ -51,4 +51,4 @@ class BrouwerDAOImpl implements BrouwerDAO {
 			    .getResultList();
 	}
 		
-}
+}*/
