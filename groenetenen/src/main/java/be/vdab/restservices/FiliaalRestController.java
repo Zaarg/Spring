@@ -42,8 +42,8 @@ class FiliaalRestController {
 		this.entityLinks = entityLinks;
 	} 
 	
-	@RequestMapping(path = "{filiaal}", method = RequestMethod.GET)FiliaalResource 
-	read(@PathVariable Filiaal filiaal) {
+	@RequestMapping(path = "{filiaal}", method = RequestMethod.GET)
+	FiliaalResource read(@PathVariable Filiaal filiaal) {
 		  if (filiaal == null) {
 		    throw new FiliaalNietGevondenException();
 		  }

@@ -15,13 +15,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.http.MediaType;
+
 
 import be.vdab.entities.Brouwer;
 import be.vdab.services.BrouwerService;
 
 
 @Controller 
-@RequestMapping("/brouwers")
+@RequestMapping(path = "/brouwers", produces = MediaType.TEXT_HTML_VALUE) 
 class BrouwerController { 
 	private static final String BROUWERS_VIEW = "brouwers/brouwers";
 	private static final String ALFABET_VIEW = "brouwers/opalfabet";
