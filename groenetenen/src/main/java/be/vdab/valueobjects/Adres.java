@@ -4,13 +4,19 @@ import java.io.Serializable;
 
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
 import be.vdab.constraints.Postcode; 
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@JsonAutoDetect(fieldVisibility=JsonAutoDetect.Visibility.ANY)
 @Embeddable
 public class Adres implements Serializable {
 	private static final long serialVersionUID = 1L; 
