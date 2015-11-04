@@ -57,7 +57,8 @@ class FiliaalController {
 	  return new ModelAndView(TOEVOEGEN_VIEW, "filiaal", new Filiaal());
 	} 
 		
-	@RequestMapping(path = "{filiaal}", method = RequestMethod.GET) ModelAndView read(@PathVariable Filiaal filiaal) {   
+	@RequestMapping(path = "{filiaal}", method = RequestMethod.GET) 
+	ModelAndView read(@PathVariable Filiaal filiaal) {   
 		ModelAndView modelAndView = new ModelAndView(FILIAAL_VIEW);
 		if (filiaal != null) {
 			modelAndView.addObject(filiaal);
