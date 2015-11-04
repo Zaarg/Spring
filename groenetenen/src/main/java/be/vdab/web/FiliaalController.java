@@ -38,6 +38,7 @@ class FiliaalController {
 	private static final String REDIRECT_URL_NA_WIJZIGEN = "redirect:/filialen";
 	private static final String AFSCHRIJVEN_VIEW = "filialen/afschrijven";
 	private static final String REDIRECT_NA_AFSCHRIJVEN = "redirect:/";
+	private static final String PER_ID_VIEW = "filialen/perid";
 	private static final Logger logger = Logger.getLogger(FiliaalController.class.getName());
 	private final FiliaalService filiaalService;
 	
@@ -151,6 +152,11 @@ class FiliaalController {
 	  }
 	  filiaalService.afschrijven(afschrijvenForm.getFilialen());
 	  return new ModelAndView(REDIRECT_NA_AFSCHRIJVEN);
+	} 
+		
+	@RequestMapping(path = "perid", method = RequestMethod.GET)
+	String findById() {
+		return PER_ID_VIEW;
 	} 
 	
 	/*@InitBinder("postcodeReeks") //Dit is de databinder voor als je geen Bean validate gebruikt 
