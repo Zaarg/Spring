@@ -102,8 +102,18 @@
   		<artifactId>spring-plugin-core
   		</artifactId>
   		<version>[1.2,]</version>
-	</dependency>   
-	<dependency> <!-- Test dependencies -->
+	</dependency>
+	<dependency> 
+  		<groupId>javax.mail</groupId>
+  		<artifactId>mail</artifactId>
+  		<version>[1,]</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+  		<artifactId>spring-context-support
+  		</artifactId>
+	</dependency>    
+	<dependency><!-- Test dependencies --><!-- Test dependencies --><!-- Test dependencies --><!-- Test dependencies -->
   		<groupId>junit</groupId>
   		<artifactId>junit</artifactId>
   		<version>4.12</version>

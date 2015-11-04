@@ -5,27 +5,31 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import be.vdab.dao.FiliaalDAO;
 import be.vdab.entities.Filiaal;
 import be.vdab.exceptions.FiliaalHeeftNogWerknemersException;
+import be.vdab.mail.MailSender;
 import be.vdab.valueobjects.PostcodeReeks;
 
 @ReadOnlyTransactionalService
 class FiliaalServiceImpl implements FiliaalService { 
 	private final FiliaalDAO filiaalDAO;
+	private final MailSender mailSender;
   
-	@Autowired 
-	FiliaalServiceImpl(FiliaalDAO filiaalDAO) {     
-		this.filiaalDAO = filiaalDAO;
-	} 
+	@Autowired
+	FiliaalServiceImpl(FiliaalDAO filiaalDAO, MailSender mailSender) {
+	  this.filiaalDAO = filiaalDAO;
+	  this.mailSender = mailSender;
+	}  
   
 	@Override
 	@ModifyingTransactionalServiceMethod  
-	public void create(Filiaal filiaal) {
+	public void create(Filiaal filiaal, String urlAlleFilialen)  {
 		filiaalDAO.save(filiaal);
+		mailSender.nieuwFiliaalMail(filiaal, urlAlleFilialen + "/" + filiaal.getId());
 	}
   
 	@Override
