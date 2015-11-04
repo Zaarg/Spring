@@ -10,9 +10,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 @Configuration
 @ComponentScan
+@EnableAsync
 @PropertySource("classpath:/mail.properties")
 public class CreateMailBeans {
 	@Bean

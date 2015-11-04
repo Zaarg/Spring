@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import be.vdab.entities.Filiaal;
@@ -25,6 +26,7 @@ public class MailSenderImpl implements MailSender {
 		this.webmaster = webmaster;
 	}
 
+	@Async
 	@Override
 	public void nieuwFiliaalMail(Filiaal filiaal, String urlFiliaal) {
 		try {
@@ -40,4 +42,20 @@ public class MailSenderImpl implements MailSender {
 			throw new RuntimeException("Kan mail nieuw filiaal niet versturen", ex);
 		}
 	}
+	
+	@Override 
+	public void aantalFilialenMail(long aantal) { 
+		  try {
+		    MimeMessage message = sender.createMimeMessage();
+		    MimeMessageHelper helper = new MimeMessageHelper(message);
+		    helper.setTo(webmaster);
+		    helper.setSubject("Aantal filialen");
+		    helper.setText(String.format("Er zijn <strong>%d</strong> filialen.",
+		      aantal), true);
+		    sender.send(message);
+		  } catch (Exception ex) {
+		    logger.log(Level.SEVERE, "kan mail aantal filialen niet versturen", ex);
+		    throw new RuntimeException("Kan mail niet versturen", ex);
+		  }
+	} 
 }

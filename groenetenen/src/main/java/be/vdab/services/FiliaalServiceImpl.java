@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +30,7 @@ class FiliaalServiceImpl implements FiliaalService {
 	@ModifyingTransactionalServiceMethod  
 	public void create(Filiaal filiaal, String urlAlleFilialen)  {
 		filiaalDAO.save(filiaal);
-		mailSender.nieuwFiliaalMail(filiaal, urlAlleFilialen + "/" + filiaal.getId());
+		//mailSender.nieuwFiliaalMail(filiaal, urlAlleFilialen + "/" + filiaal.getId()); sending mail doesnt work - checkout with Frank
 	}
   
 	@Override
@@ -83,5 +84,10 @@ class FiliaalServiceImpl implements FiliaalService {
 		}
 	}  // je wijzigt een entity binnen een transactie.
 	// JPA wijzigt dan automatisch het bijbehorende record bij de commit
- 
-} 
+	
+	@Override 
+	//@Scheduled(/*cron = "0 0 1 * * *"*/ //fixedRate=60000) // test = om de minuut maar mailen werkt nog niet voorlopig
+	public void aantalFilialenMail() {
+	  //mailSender.aantalFilialenMail(filiaalDAO.count());
+	}
+}	 
