@@ -74,7 +74,7 @@
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-orm</artifactId>
 	</dependency> 
-	<dependency> <!-- Hibernate implementatie van JPA -->
+	<dependency> <!-- Hibernate & JPA  Hibernate & JPA  Hibernate & JPA  Hibernate & JPA  Hibernate & JPA  Hibernate & JPA -->
     	<groupId>org.hibernate</groupId>
     	<artifactId>hibernate-entitymanager</artifactId>
     	<version>[5, 5.0.99]</version>
@@ -103,7 +103,7 @@
 		</artifactId>
 		<version>[1.2,]</version>
 	</dependency>
-	<dependency>
+	<dependency><!-- SECURITY  SECURITY  SECURITY  SECURITY  SECURITY  SECURITY  SECURITY  SECURITY  SECURITY  SECURITY -->
 		<groupId>org.springframework.security</groupId>
 		<artifactId>spring-security-config</artifactId>
 		<version>4.0.2.RELEASE</version>

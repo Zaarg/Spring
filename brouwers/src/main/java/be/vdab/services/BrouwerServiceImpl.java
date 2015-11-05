@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.annotation.Isolation;
@@ -24,7 +25,8 @@ class BrouwerServiceImpl implements BrouwerService {
 	} 
   
 	@Override
-	@Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED) 
+	@Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED)
+	@PreAuthorize("hasAuthority('administrator')")
 	public void create(Brouwer Brouwer) {
 		brouwerDAO.save(Brouwer);
 	}
@@ -36,12 +38,14 @@ class BrouwerServiceImpl implements BrouwerService {
 	
 	@Override
 	@Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED) 
+	@PreAuthorize("hasAuthority('administrator')")
 	public void update(Brouwer Brouwer) {
 		brouwerDAO.save(Brouwer);
 	}
 	
 	@Override
 	@Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED) 
+	@PreAuthorize("hasAuthority('administrator')")
 	public void delete(long id) {
 		Brouwer brouwer  = brouwerDAO.findOne(id);
 		if (brouwer != null) {
