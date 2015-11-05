@@ -113,7 +113,7 @@
   		<artifactId>spring-context-support
   		</artifactId>
 	</dependency>
-	<dependency>
+	<dependency> <!-- Security -->
 		<groupId>org.springframework.security</groupId>
 		<artifactId>spring-security-config</artifactId>
 		<version>4.0.2.RELEASE</version>
@@ -122,6 +122,11 @@
 		<groupId>org.springframework.security</groupId>
 		<artifactId>spring-security-taglibs</artifactId>
 		<version>4.0.2.RELEASE</version>
+	</dependency>
+	<dependency> <!-- Aspect oriented programming -->
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjweaver</artifactId>
+		<version>[1.8,]</version>
 	</dependency>     
 	<dependency><!-- Test dependencies --><!-- Test dependencies --><!-- Test dependencies --><!-- Test dependencies -->
   		<groupId>junit</groupId>
