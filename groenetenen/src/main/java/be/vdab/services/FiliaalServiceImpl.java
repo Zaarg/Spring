@@ -89,8 +89,8 @@ class FiliaalServiceImpl implements FiliaalService {
 	// JPA wijzigt dan automatisch het bijbehorende record bij de commit
 	
 	@Override 
-	//@Scheduled(/*cron = "0 0 1 * * *"*/ //fixedRate=60000) // test = om de minuut maar mailen werkt nog niet voorlopig
+	//@Scheduled(/*cron = "0 0 1 * * *"*/ fixedRate=60000) // test = om de minuut
 	public void aantalFilialenMail() {
-	  //mailSender.aantalFilialenMail(filiaalDAO.count());
+	  mailSender.aantalFilialenMail(filiaalDAO.count());
 	}
 }	 
