@@ -47,12 +47,17 @@ public class CreateSecurityFilter extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.formLogin().loginPage("/login").and().logout().logoutSuccessUrl("/").and().authorizeRequests()
-				.antMatchers("/filialen/toevoegen", "/filialen/*/wijzigen", "/filialen/*/verwijderen")
-				.hasAuthority(MANAGER).antMatchers(HttpMethod.POST, "/filialen").hasAuthority(MANAGER)
-				.antMatchers("/werknemers").hasAnyAuthority(MAGAZIJNIER, HELPDESKMEDEWERKER).antMatchers(HttpMethod.PUT, "/filialen/*")
-				.hasAuthority(MANAGER).antMatchers(HttpMethod.DELETE, "/filialen/*").hasAuthority(MANAGER)
-				.antMatchers("/", "/login").permitAll().antMatchers("/**").authenticated().and().exceptionHandling().accessDeniedPage("/WEB-INF/JSP/forbidden.jsp");
+		http.formLogin().loginPage("/login")
+			.and().logout().logoutSuccessUrl("/")
+			.and().authorizeRequests()
+				.antMatchers("/filialen/toevoegen", "/filialen/*/wijzigen", "/filialen/*/verwijderen").hasAuthority(MANAGER)
+				.antMatchers(HttpMethod.POST, "/filialen").hasAuthority(MANAGER)
+				.antMatchers("/werknemers").hasAnyAuthority(MAGAZIJNIER, HELPDESKMEDEWERKER)
+				.antMatchers(HttpMethod.PUT, "/filialen/*").hasAuthority(MANAGER)
+				.antMatchers(HttpMethod.DELETE, "/filialen/*").hasAuthority(MANAGER)
+				.antMatchers("/", "/login").permitAll()
+				.antMatchers("/**").authenticated()
+			.and().exceptionHandling().accessDeniedPage("/WEB-INF/JSP/forbidden.jsp");
 		http.httpBasic();
 	}
 }

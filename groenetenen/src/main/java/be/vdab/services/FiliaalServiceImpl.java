@@ -31,7 +31,7 @@ class FiliaalServiceImpl implements FiliaalService {
 	@ModifyingTransactionalServiceMethod  
 	public void create(Filiaal filiaal, String urlAlleFilialen)  {
 		filiaalDAO.save(filiaal);
-		//mailSender.nieuwFiliaalMail(filiaal, urlAlleFilialen + "/" + filiaal.getId()); sending mail doesnt work - checkout with Frank
+		mailSender.nieuwFiliaalMail(filiaal, urlAlleFilialen + "/" + filiaal.getId()); //sending mail doesnt work - checkout with Frank
 	}
   
 	@Override
@@ -47,6 +47,7 @@ class FiliaalServiceImpl implements FiliaalService {
   
 	@Override
 	@Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED)  
+	@PreAuthorize("hasAuthority('manager')")
 	public void delete(long id) {
 		Filiaal filiaal = filiaalDAO.findOne(id);
 		if (filiaal != null) {

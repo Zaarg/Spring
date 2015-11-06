@@ -3,4 +3,4 @@ mailserver.port=465
 mailserver.protocol=smtps
 mailserver.username=zaargtest@gmail.com
 mailserver.password=86WlIcB9PoUrzRWohKVn
-webmaster=sschoono@scarlet.be
+webmaster=sschoono@vub.ac.be
