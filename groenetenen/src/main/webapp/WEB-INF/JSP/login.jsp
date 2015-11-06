@@ -1,8 +1,7 @@
 <%@page contentType='text/html' pageEncoding='UTF-8' session='false'%>
 <%@taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <%@taglib prefix='v' uri='http://vdab.be/tags'%>
-<%@taglib prefix='security'
-	uri='http://www.springframework.org/security/tags'%>
+<%@taglib prefix='security' uri='http://www.springframework.org/security/tags'%>
 <!doctype html>
 <html lang='nl'>
 <head>
