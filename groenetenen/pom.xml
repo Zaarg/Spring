@@ -127,7 +127,17 @@
 		<groupId>org.aspectj</groupId>
 		<artifactId>aspectjweaver</artifactId>
 		<version>[1.8,]</version>
-	</dependency>     
+	</dependency>
+	<dependency> <!-- Database connectionpool beheer ipv context.xml, zie openshift cursus -->
+  		<groupId>com.zaxxer</groupId>
+  		<artifactId>HikariCP-java6</artifactId>
+  		<version>2.2.5</version>
+	</dependency>
+	<dependency>
+  		<groupId>mysql</groupId>
+  		<artifactId>mysql-connector-java</artifactId>
+  		<version>[5.1,]</version>
+	</dependency>       
 	<dependency><!-- Test dependencies --><!-- Test dependencies --><!-- Test dependencies --><!-- Test dependencies -->
   		<groupId>junit</groupId>
   		<artifactId>junit</artifactId>
